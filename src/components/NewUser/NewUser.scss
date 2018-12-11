@@ -1,0 +1,14 @@
+.checkbox {
+  label {
+    color: rgba(0, 0, 0, .95);
+
+    &:hover {
+      cursor: pointer;
+
+    }
+  }
+}
+
+.red {
+  color: #9f3a38;
+}

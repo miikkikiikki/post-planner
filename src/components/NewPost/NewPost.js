@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './NewPost.scss';
 import PlannerApiService from "../../services/PlannerApiService";
+import Calendar from "../Calendar/Calendar";
 
 class NewPost extends Component {
 
@@ -136,6 +137,10 @@ class NewPost extends Component {
               <label>Tags</label>
               <input name="tags" type="text" placeholder="Tags"
                      value={tags} onChange={this.onInputChange}/>
+            </div>
+
+            <div className="field">
+              <Calendar/>
             </div>
 
             <button

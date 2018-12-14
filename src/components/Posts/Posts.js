@@ -4,7 +4,6 @@ import PlannerApiService from "../../services/PlannerApiService";
 import PostsList from "../PostsList/PostsList";
 
 class Posts extends Component {
-
   constructor(props) {
     super(props);
 

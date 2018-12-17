@@ -21,7 +21,7 @@ class Calendar extends Component {
       <DatePicker
         selected={this.props.value}
         onChange={this.handleChange}
-
+        minDate={new Date()}
         showTimeSelect
         timeFormat="HH:mm"
         timeIntervals={15}

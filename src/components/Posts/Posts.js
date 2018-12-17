@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Posts.scss';
-import PlannerApiService from "../../services/PlannerApiService";
-import PostsList from "../PostsList/PostsList";
+import PlannerApiService from '../../services/PlannerApiService';
+import PostsList from '../PostsList/PostsList';
 
 class Posts extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      users: {},
-      posts: {},
+      users: [],
+      posts: [],
       loading: true,
       chainFilter: 'golos',
       statusFilter: 'new'
@@ -44,7 +44,7 @@ class Posts extends Component {
 
   filter(posts, chainFilter, statusFilter) {
     return posts.filter(post => {
-      if (statusFilter === "all") return true;
+      if (statusFilter === 'all') return true;
       return post.status === statusFilter.toUpperCase();
     }).filter(post => {
       return chainFilter.toUpperCase() === (this.state.users.find(user => (user.id === post.user_id))).chain;
@@ -60,8 +60,23 @@ class Posts extends Component {
     })
   };
 
+  deletePost = (id) => {
+    this.plannerApiService.deletePost(id)
+      .then(result => {
+        if(result) {
+          const newPosts = this.state.posts.filter(post => {
+            return post.id !== id
+          })
+          this.setState({posts: newPosts})
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   render() {
-    let {posts, loading, chainFilter, statusFilter} = this.state;
+    let { posts, loading, chainFilter, statusFilter } = this.state;
     const loader = <div className="ui active centered inline loader"/>;
 
     if (!loading) {
@@ -73,15 +88,15 @@ class Posts extends Component {
     const content = loading ? loader : <PostsList posts={posts}
                                                   chainFilter={chainFilter}
                                                   statusFilter={statusFilter}
-                                                  deleteUser={this.deleteUser}
+                                                  deletePost={this.deletePost}
                                                   onFilterChange={this.onFilterChange}/>;
 
     return (
-        <div className="ui one column centered grid">
-          <div className="column">
-            {content}
-          </div>
+      <div className="ui one column centered grid">
+        <div className="column">
+          {content}
         </div>
+      </div>
     );
   }
 }

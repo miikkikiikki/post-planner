@@ -30,7 +30,7 @@ class UsersList extends Component {
             <tr>
               <th colSpan="4">
                 <Link to="/users/new" className="ui small primary labeled icon button">
-                  <i className="user icon"></i> Add User
+                  <i className="user icon" /> Add User
                 </Link>
               </th>
             </tr>

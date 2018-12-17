@@ -10,6 +10,7 @@ class PlannerApiService extends Component {
       method: method,
       headers: new Headers({
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
         'Authorization': api.BASIC
       }),
       body: JSON.stringify(body)

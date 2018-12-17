@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './NewUser.scss';
-import PlannerApiService from "../../services/PlannerApiService";
-import {Redirect} from 'react-router-dom';
+import PlannerApiService from '../../services/PlannerApiService';
+import { Redirect } from 'react-router-dom';
 
 class NewUser extends Component {
 
@@ -35,7 +35,7 @@ class NewUser extends Component {
 
   handleBlur = (field) => (evt) => {
     this.setState({
-      touched: {...this.state.touched, [field]: true},
+      touched: { ...this.state.touched, [field]: true },
     });
   };
 
@@ -88,38 +88,38 @@ class NewUser extends Component {
     }
 
     return (
-        <div className="ui raised segment">
-          <form className="ui form" onSubmit={this.onSubmit}>
-            <h2 className="ui dividing header">Add new User</h2>
+      <div className="ui raised segment">
+        <form className="ui form" onSubmit={this.onSubmit}>
+          <h2 className="ui dividing header">Add new User</h2>
 
-            <div className="field">
-              <div className="ui slider checkbox">
-                <input type="checkbox" name="isSteem" id="checkbox"
-                       checked={this.state.isSteem} onChange={this.onInputChange}/>
-                <label htmlFor="checkbox">{this.state.isSteem ? 'STEEM' : 'GOLOS'}</label>
-              </div>
+          <div className="field">
+            <div className="ui slider checkbox">
+              <input type="checkbox" name="isSteem" id="checkbox"
+                     checked={this.state.isSteem} onChange={this.onInputChange}/>
+              <label htmlFor="checkbox">{this.state.isSteem ? 'STEEM' : 'GOLOS'}</label>
             </div>
+          </div>
 
-            <div className={shouldMarkError('userName') ? 'field error' : 'field'}>
-              <label>User name</label>
-              <input name="userName" type="text" placeholder="user name"
-                     value={this.state.userName} onChange={this.onInputChange}
-                     onBlur={this.handleBlur('userName')}/>
+          <div className={shouldMarkError('userName') ? 'field error' : 'field'}>
+            <label>User name</label>
+            <input name="userName" type="text" placeholder="user name"
+                   value={this.state.userName} onChange={this.onInputChange}
+                   onBlur={this.handleBlur('userName')}/>
 
-            </div>
+          </div>
 
-            <div className={shouldMarkError('postingKey') ? 'field error' : 'field'}>
-              <label>Posting Key</label>
-              <input name="postingKey" type="password" placeholder="private posting key"
-                     value={this.state.postingKey} onChange={this.onInputChange}
-                     onBlur={this.handleBlur('postingKey')}/>
-            </div>
+          <div className={shouldMarkError('postingKey') ? 'field error' : 'field'}>
+            <label>Posting Key</label>
+            <input name="postingKey" type="password" placeholder="private posting key"
+                   value={this.state.postingKey} onChange={this.onInputChange}
+                   onBlur={this.handleBlur('postingKey')}/>
+          </div>
 
-            <button disabled={isDisabled}
-                    className="ui button" type="submit">Submit
-            </button>
-          </form>
-        </div>
+          <button disabled={isDisabled}
+                  className="ui button" type="submit">Submit
+          </button>
+        </form>
+      </div>
     );
   }
 }
